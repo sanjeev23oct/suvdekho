@@ -13,7 +13,7 @@ export const cars: Car[] = [
     engineCC: 1497,
     power: 113,
     seatingCapacity: 5,
-    imageUrl: 'https://imgd.aeplcdn.com/664x374/n/cw/ec/141115/creta-exterior-right-front-three-quarter-6.jpeg',
+    imageUrl: 'https://www.hyundai.com/content/dam/hyundai/in/en/data/find-a-car/Creta/Highlights/cretahighlightbig1.jpg',
   },
   {
     id: '2',
