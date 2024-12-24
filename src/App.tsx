@@ -7,8 +7,23 @@ import { CarDetail } from './components/CarDetail';
 import { filterCars } from './utils/filters';
 import { CarFront, Loader } from 'lucide-react';
 import { useCars } from './hooks/useCars';
+import ReactGA from 'react-ga4';
+import { useEffect } from 'react';
+
+
 
 function App() {
+
+  ReactGA.initialize('G-0WB4SDDBP6');
+
+  const location = new URL(window.location.href);
+
+  useEffect(() => {
+    ReactGA.send({ hitType: 'pageview', page: location.pathname });
+  }, [location]);
+
+
+
   const { cars, loading, error } = useCars();
   const [selectedCars, setSelectedCars] = useState<Car[]>([]);
   const [selectedCarDetail, setSelectedCarDetail] = useState<Car | null>(null);
