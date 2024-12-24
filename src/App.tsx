@@ -61,7 +61,7 @@ function App() {
     car.model.toLowerCase().includes(filters.search.toLowerCase())
   );
 
-  console.log('filteredCars length:', filteredCars.length); // Added console log
+  console.log('filteredCars length:', filteredCars.length); 
 
   const offset = currentPage * carsPerPage;
   const pageCount = Math.ceil(filteredCars.length / carsPerPage);
@@ -83,17 +83,20 @@ function App() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 flex flex-col">
-      <header className="bg-white shadow-sm p-4">
-        <div className="max-w-7xl mx-auto">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-2">
-              <CarFront className="w-8 h-8 text-blue-600" />
-              <h1 className="text-2xl font-bold text-gray-900">
-                Compare Top SUVs in India
-              </h1>
-            </div>
+    <div className="min-h-screen bg-gray-100 flex flex-col">
+      <header className="bg-white shadow-lg p-4">
+        <div className="max-w-7xl mx-auto flex justify-between items-center">
+          <div className="flex items-center gap-2">
+            <img src="SuvWaale.webp" alt="SUV Waale Logo" className="h-8 w-auto" /> 
+            <h1 className="text-2xl font-bold text-gray-900">SUV Waale</h1>
           </div>
+          <nav>
+            <ul className="flex space-x-4">
+              <li><a href="#" className="text-gray-700 hover:text-gray-900">Home</a></li>
+              <li><a href="#" className="text-gray-700 hover:text-gray-900">About</a></li>
+              <li><a href="#" className="text-gray-700 hover:text-gray-900">Contact</a></li>
+            </ul>
+          </nav>
         </div>
       </header>
 
@@ -133,21 +136,15 @@ function App() {
             <>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {paginatedCars.map((car) => (
-                  <div
+                  <CarCard
                     key={car.id}
-                    onClick={() => setSelectedCarDetail(car)}
-                  >
-                    <CarCard
-                      car={car}
-                      isSelected={selectedCars.some(
-                        (c) => c.id === car.id
-                      )}
-                      onSelect={(e) => {
-                        e.stopPropagation();
-                        handleCarSelect(car);
-                      }}
-                    />
-                  </div>
+                    car={car}
+                    isSelected={selectedCars.some((c) => c.id === car.id)}
+                    onSelect={(e) => {
+                      e.stopPropagation();
+                      handleCarSelect(car);
+                    }}
+                  />
                 ))}
               </div>
               <ReactPaginate
@@ -174,13 +171,12 @@ function App() {
         </section>
 
         {selectedCarDetail && (
-          <CarDetail
-            car={selectedCarDetail}
-            onClose={() => setSelectedCarDetail(null)}
-          />
+          <CarDetail car={selectedCarDetail} onClose={() => setSelectedCarDetail(null)} />
         )}
-       
       </main>
+      <footer className="bg-gray-200 p-4 text-center">
+        <p>&copy; 2024 Your Company Name. All rights reserved.</p>
+      </footer>
     </div>
   );
 }
