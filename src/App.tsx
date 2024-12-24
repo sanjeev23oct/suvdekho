@@ -14,7 +14,7 @@ import { useEffect } from 'react';
 
 function App() {
 
-  ReactGA.initialize('G-0WB4SDDBP6');
+  ReactGA.initialize('G-M0LLQV71T9');
 
   const location = new URL(window.location.href);
 
