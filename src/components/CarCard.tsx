@@ -6,14 +6,16 @@ interface CarCardProps {
   car: Car;
   isSelected: boolean;
   onSelect: (e: React.MouseEvent) => void;
+  onShowDetail: (car: Car) => void;
 }
 
-export function CarCard({ car, isSelected, onSelect }: CarCardProps) {
+export function CarCard({ car, isSelected, onSelect, onShowDetail }: CarCardProps) {
   return (
     <div 
-      className={`relative rounded-lg overflow-hidden shadow-lg transition-all duration-300 group hover:shadow-xl ${
+      className={`relative rounded-lg overflow-hidden shadow-lg transition-all duration-300 group hover:shadow-xl cursor-pointer bg-white dark:bg-gray-800 ${
         isSelected ? 'ring-2 ring-blue-500' : ''
       }`}
+      onClick={() => onShowDetail(car)}
     >
       <img 
         src={car.imageUrl} 
@@ -32,24 +34,24 @@ export function CarCard({ car, isSelected, onSelect }: CarCardProps) {
         {isSelected ? <Check className="w-5 h-5" /> : <Plus className="w-5 h-5" />}
       </button>
 
-      <div className="p-4 bg-white">
-        <h3 className="text-xl font-bold">{car.brand} {car.model}</h3>
+      <div className="p-4">
+        <h3 className="text-xl font-bold text-gray-900 dark:text-white">{car.brand} {car.model}</h3>
         <div className="mt-2 space-y-2">
           <div className="flex items-center gap-2">
-            <IndianRupee className="w-4 h-4" />
-            <span>₹{(car.price / 100000).toFixed(2)} L</span>
+            <IndianRupee className="w-4 h-4 text-gray-600 dark:text-gray-400" />
+            <span className="text-gray-700 dark:text-gray-300">₹{(car.price / 100000).toFixed(2)} L</span>
           </div>
           <div className="flex items-center gap-2">
-            <Fuel className="w-4 h-4" />
-            <span>{car.fuelType}</span>
+            <Fuel className="w-4 h-4 text-gray-600 dark:text-gray-400" />
+            <span className="text-gray-700 dark:text-gray-300">{car.fuelType}</span>
           </div>
           <div className="flex items-center gap-2">
-            <Gauge className="w-4 h-4" />
-            <span>{car.mileage} kmpl</span>
+            <Gauge className="w-4 h-4 text-gray-600 dark:text-gray-400" />
+            <span className="text-gray-700 dark:text-gray-300">{car.mileage} kmpl</span>
           </div>
           <div className="flex items-center gap-2">
-            <CarIcon className="w-4 h-4" />
-            <span>{car.transmission}</span>
+            <CarIcon className="w-4 h-4 text-gray-600 dark:text-gray-400" />
+            <span className="text-gray-700 dark:text-gray-300">{car.transmission}</span>
           </div>
         </div>
       </div>

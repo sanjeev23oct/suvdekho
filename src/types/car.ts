@@ -9,8 +9,19 @@ export interface Car {
   mileage: number;
   engineCC: number;
   power: number;
+  torque?: number;
   seatingCapacity: number;
   imageUrl: string;
+  dimensions?: {
+    length: number;
+    width: number;
+    height: number;
+    wheelbase: number;
+  };
+  groundClearance?: number;
+  bootSpace?: number;
+  fuelTankCapacity?: number;
+  safetyFeatures?: string[];
 }
 
 export interface ComparisonFeature {
