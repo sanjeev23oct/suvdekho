@@ -5,7 +5,7 @@ import { ComparisonFeatures } from './components/comparison/ComparisonFeatures';
 import { SearchFilters } from './components/SearchFilters';
 import { CarDetail } from './components/CarDetail';
 import { filterCars } from './utils/filters';
-import { CarFront, Loader } from 'lucide-react';
+import { CarFront, Loader, Sun, Moon } from 'lucide-react';
 import { useCars } from './hooks/useCars';
 import ReactGA from 'react-ga4';
 import ReactPaginate from 'react-paginate';
@@ -13,6 +13,15 @@ import ReactPaginate from 'react-paginate';
 function App() {
   ReactGA.initialize('G-M0LLQV71T9');
   const location = new URL(window.location.href);
+  const [darkMode, setDarkMode] = useState(false);
+
+  useEffect(() => {
+    if (darkMode) {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+  }, [darkMode]);
 
   useEffect(() => {
     ReactGA.send({ hitType: 'pageview', page: location.pathname });
@@ -83,20 +92,33 @@ function App() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-100 flex flex-col">
-      <header className="bg-white shadow-lg p-4">
+    <div className="min-h-screen bg-gray-100 dark:bg-gray-900 flex flex-col transition-colors duration-200">
+      <header className="bg-white dark:bg-gray-800 shadow-lg p-4">
         <div className="max-w-7xl mx-auto flex justify-between items-center">
           <div className="flex items-center gap-2">
             <img src="SuvWaale.webp" alt="SUV Waale Logo" className="h-8 w-auto" /> 
-            <h1 className="text-2xl font-bold text-gray-900">SUV Waale</h1>
+            <h1 className="text-2xl font-bold text-gray-900 dark:text-white">SUV Waale</h1>
           </div>
-          <nav>
-            <ul className="flex space-x-4">
-              <li><a href="#" className="text-gray-700 hover:text-gray-900">Home</a></li>
-              <li><a href="#" className="text-gray-700 hover:text-gray-900">About</a></li>
-              <li><a href="#" className="text-gray-700 hover:text-gray-900">Contact</a></li>
-            </ul>
-          </nav>
+          <div className="flex items-center gap-4">
+            <button
+              onClick={() => setDarkMode(!darkMode)}
+              className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+              aria-label="Toggle dark mode"
+            >
+              {darkMode ? (
+                <Sun className="w-5 h-5 text-gray-600 dark:text-gray-300" />
+              ) : (
+                <Moon className="w-5 h-5 text-gray-600 dark:text-gray-300" />
+              )}
+            </button>
+            <nav>
+              <ul className="flex space-x-4">
+                <li><a href="#" className="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">Home</a></li>
+                <li><a href="#" className="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">About</a></li>
+                <li><a href="#" className="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">Contact</a></li>
+              </ul>
+            </nav>
+          </div>
         </div>
       </header>
 
@@ -108,7 +130,7 @@ function App() {
 
         {selectedCars.length > 0 && (
           <section className="mt-8">
-            <h2 className="text-xl font-semibold text-gray-900 mb-4">
+            <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
               Comparison
             </h2>
             <ComparisonFeatures
@@ -120,10 +142,10 @@ function App() {
 
         <section className="mt-8">
           <div className="flex items-center justify-between mb-6">
-            <h2 className="text-xl font-semibold text-gray-900">
+            <h2 className="text-xl font-semibold text-gray-900 dark:text-white">
               Available Cars
             </h2>
-            <span className="text-sm text-gray-600">
+            <span className="text-sm text-gray-600 dark:text-gray-400">
               {3 - selectedCars.length} more can be selected
             </span>
           </div>
@@ -144,6 +166,7 @@ function App() {
                       e.stopPropagation();
                       handleCarSelect(car);
                     }}
+                    onShowDetail={setSelectedCarDetail}
                   />
                 ))}
               </div>
@@ -174,8 +197,8 @@ function App() {
           <CarDetail car={selectedCarDetail} onClose={() => setSelectedCarDetail(null)} />
         )}
       </main>
-      <footer className="bg-gray-200 p-4 text-center">
-        <p>&copy; 2024 Your Company Name. All rights reserved.</p>
+      <footer className="bg-gray-200 dark:bg-gray-800 p-4 text-center">
+        <p className="text-gray-600 dark:text-gray-400">&copy; 2024 Your Company Name. All rights reserved.</p>
       </footer>
     </div>
   );

@@ -11,9 +11,25 @@ export const cars: Car[] = [
     transmission: 'Automatic',
     mileage: 17.0,
     engineCC: 1497,
-    power: 113,
+    power: 115,
+    torque: 144,
     seatingCapacity: 5,
     imageUrl: 'https://www.hyundai.com/content/dam/hyundai/in/en/data/find-a-car/Creta/Highlights/cretahighlightbig1.jpg',
+    dimensions: {
+      length: 4330,
+      width: 1790,
+      height: 1635,
+      wheelbase: 2610
+    },
+    fuelTankCapacity: 50,
+    safetyFeatures: [
+      "6 Airbags",
+      "ABS with EBD",
+      "ESC (Electronic Stability Control)",
+      "VSM (Vehicle Stability Management)",
+      "HAC (Hill-start Assist Control)",
+      "All Wheel Disc Brakes"
+    ]
   },
   {
     id: '2',
@@ -95,9 +111,26 @@ export const cars: Car[] = [
     transmission: 'Automatic',
     mileage: 17.0,
     engineCC: 1497,
-    power: 158,
+    power: 115,
+    torque: 144,
     seatingCapacity: 5,
     imageUrl: 'https://imgd.aeplcdn.com/664x374/n/cw/ec/144163/seltos-exterior-right-front-three-quarter-2.jpeg',
+    dimensions: {
+      length: 4365,
+      width: 1800,
+      height: 1645,
+      wheelbase: 2610
+    },
+    bootSpace: 433,
+    fuelTankCapacity: 50,
+    safetyFeatures: [
+      "6 Airbags",
+      "ABS with EBD",
+      "ESC (Electronic Stability Control)",
+      "VSM (Vehicle Stability Management)",
+      "HAC (Hill-start Assist Control)",
+      "All Wheel Disc Brakes"
+    ]
   },
   {
     id: '8',
